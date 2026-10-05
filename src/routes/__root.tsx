@@ -1,4 +1,5 @@
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router';
+import { AuthProvider } from '@/hooks/useAuth';
 
 export const Route = createRootRoute({
   component: RootLayout,
@@ -8,7 +9,11 @@ export const Route = createRootRoute({
 // The app shell: anything rendered here (nav, footer, providers) appears on every page.
 // <Outlet /> is where the matched page renders.
 function RootLayout() {
-  return <Outlet />;
+  return (
+    <AuthProvider>
+      <Outlet />
+    </AuthProvider>
+  );
 }
 
 function NotFound() {
